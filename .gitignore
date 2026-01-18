@@ -41,5 +41,5 @@ build/
 htmlcov/
 
 # Environment variables
-.env
-.env.local
+.env*.development
+.env*.production
