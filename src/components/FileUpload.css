@@ -1,0 +1,114 @@
+.file-upload-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.file-upload-dropzone {
+  border: 2px dashed rgba(100, 108, 255, 0.5);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  background-color: rgba(100, 108, 255, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.file-upload-dropzone:hover:not(.disabled) {
+  border-color: #646cff;
+  background-color: rgba(100, 108, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.file-upload-dropzone.dragging {
+  border-color: #646cff;
+  background-color: rgba(100, 108, 255, 0.15);
+  transform: scale(1.02);
+}
+
+.file-upload-dropzone.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.file-input-hidden {
+  display: none;
+}
+
+.file-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.upload-icon {
+  color: #646cff;
+  margin-bottom: 0.5rem;
+}
+
+.upload-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.upload-subtext {
+  font-size: 1rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.upload-formats {
+  font-size: 0.875rem;
+  margin: 0.5rem 0 0 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.file-selected {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.file-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.87);
+  word-break: break-all;
+}
+
+.file-size {
+  font-size: 0.875rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (prefers-color-scheme: light) {
+  .file-upload-dropzone {
+    background-color: rgba(100, 108, 255, 0.05);
+    border-color: rgba(100, 108, 255, 0.3);
+  }
+
+  .file-upload-dropzone:hover:not(.disabled) {
+    background-color: rgba(100, 108, 255, 0.1);
+  }
+
+  .upload-text,
+  .file-name {
+    color: #213547;
+  }
+
+  .upload-subtext,
+  .file-size {
+    color: rgba(33, 53, 71, 0.6);
+  }
+
+  .upload-formats {
+    color: rgba(33, 53, 71, 0.5);
+  }
+}
