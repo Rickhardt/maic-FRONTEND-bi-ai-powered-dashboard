@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import ChartRenderer from './ChartRenderer';
 import type { DashboardChart } from '../types';
 import './Dashboard.css';

@@ -131,7 +131,7 @@ function App() {
                     key={index}
                     suggestion={suggestion}
                     onAddToDashboard={() => handleAddToDashboard(suggestion)}
-                    disabled={state === 'analyzing'}
+                    disabled={state === 'suggestions'}
                   />
                 ))}
               </div>

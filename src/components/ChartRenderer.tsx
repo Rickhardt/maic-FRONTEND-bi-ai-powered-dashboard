@@ -27,7 +27,7 @@ interface ChartRendererProps {
 
 const COLORS = ['#646cff', '#535bf2', '#747bff', '#8b92ff', '#a2a7ff'];
 
-export default function ChartRenderer({ chartType, data, title, labels }: ChartRendererProps) {
+export default function ChartRenderer({ chartType, data, title }: ChartRendererProps) {
   if (!data || data.length === 0) {
     return (
       <div className="chart-empty">
@@ -104,7 +104,7 @@ export default function ChartRenderer({ chartType, data, title, labels }: ChartR
               fill="#8884d8"
               dataKey="value"
             >
-              {data.map((entry, index) => (
+              {data.map((_, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
