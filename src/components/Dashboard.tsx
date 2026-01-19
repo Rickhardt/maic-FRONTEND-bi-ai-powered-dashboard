@@ -27,7 +27,7 @@ export default function Dashboard({ charts, onRemoveChart, onExpandChart }: Dash
             <line x1="3" y1="9" x2="21" y2="9" />
           </svg>
           <h3>Tu dashboard está vacío</h3>
-          <p>Agrega gráficos desde las sugerencias de análisis para comenzar</p>
+          <p>Agrega gráficos desde las sugerencias de análisis para comenzar a visualizar tus datos</p>
         </div>
       </div>
     );
@@ -49,6 +49,14 @@ export default function Dashboard({ charts, onRemoveChart, onExpandChart }: Dash
             >
               ×
             </button>
+            <div style={{ marginBottom: '1rem' }}>
+              <h3 style={{ fontSize: '1.125rem', fontWeight: 600, color: 'hsl(var(--foreground))', margin: '0 0 0.5rem 0' }}>
+                {chart.suggestion.title}
+              </h3>
+              <p style={{ fontSize: '0.875rem', color: 'hsl(var(--muted-foreground))', margin: 0 }}>
+                {chart.suggestion.insight}
+              </p>
+            </div>
             <ChartRenderer
               chartType={chart.suggestion.chart_type}
               data={chart.data}
@@ -61,7 +69,7 @@ export default function Dashboard({ charts, onRemoveChart, onExpandChart }: Dash
               onClick={() => onExpandChart(chart)}
               aria-label="Expandir gráfico"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
               </svg>
               Expandir

@@ -5,25 +5,27 @@
 }
 
 .file-upload-dropzone {
-  border: 2px dashed rgba(100, 108, 255, 0.5);
-  border-radius: 12px;
+  border: 3px dashed hsl(var(--primary) / 0.4);
+  border-radius: var(--radius);
   padding: 3rem 2rem;
   text-align: center;
-  background-color: rgba(100, 108, 255, 0.05);
   transition: all 0.3s ease;
+  background: hsl(var(--card));
   cursor: pointer;
+  box-shadow: 0 0 0 1px hsl(var(--border));
 }
 
 .file-upload-dropzone:hover:not(.disabled) {
-  border-color: #646cff;
-  background-color: rgba(100, 108, 255, 0.1);
-  transform: translateY(-2px);
+  border-color: hsl(var(--primary) / 0.7);
+  background: hsl(var(--accent));
+  box-shadow: 0 0 0 1px hsl(var(--primary) / 0.3);
 }
 
 .file-upload-dropzone.dragging {
-  border-color: #646cff;
-  background-color: rgba(100, 108, 255, 0.15);
+  border-color: hsl(var(--primary));
+  background: hsl(var(--accent));
   transform: scale(1.02);
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.2);
 }
 
 .file-upload-dropzone.disabled {
@@ -44,71 +46,52 @@
 }
 
 .upload-icon {
-  color: #646cff;
-  margin-bottom: 0.5rem;
+  color: hsl(var(--primary));
+  width: 48px;
+  height: 48px;
+  transition: transform 0.3s ease;
+}
+
+.file-upload-dropzone:hover:not(.disabled) .upload-icon {
+  transform: translateY(-4px);
 }
 
 .upload-text {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
+  color: hsl(var(--foreground));
   margin: 0;
-  color: rgba(255, 255, 255, 0.87);
 }
 
 .upload-subtext {
-  font-size: 1rem;
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
   margin: 0;
-  color: rgba(255, 255, 255, 0.6);
 }
 
 .upload-formats {
-  font-size: 0.875rem;
-  margin: 0.5rem 0 0 0;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+  margin: 0;
+  padding-top: 0.5rem;
 }
 
 .file-selected {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 0.5rem;
 }
 
 .file-name {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
+  color: hsl(var(--foreground));
   margin: 0;
-  color: rgba(255, 255, 255, 0.87);
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .file-size {
   font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
   margin: 0;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-@media (prefers-color-scheme: light) {
-  .file-upload-dropzone {
-    background-color: rgba(100, 108, 255, 0.05);
-    border-color: rgba(100, 108, 255, 0.3);
-  }
-
-  .file-upload-dropzone:hover:not(.disabled) {
-    background-color: rgba(100, 108, 255, 0.1);
-  }
-
-  .upload-text,
-  .file-name {
-    color: #213547;
-  }
-
-  .upload-subtext,
-  .file-size {
-    color: rgba(33, 53, 71, 0.6);
-  }
-
-  .upload-formats {
-    color: rgba(33, 53, 71, 0.5);
-  }
 }

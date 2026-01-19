@@ -84,11 +84,29 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1 className="app-title">
-          <span className="title-icon">🤖</span>
-          Creador de Dashboards con IA
-        </h1>
-        <p className="app-subtitle">Análisis al Instante</p>
+        <div className="brand-header">
+          <div className="brand-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="8" fill="#646cff"/>
+              <path d="M16 8L18.5 13.5L24 16L18.5 18.5L16 24L13.5 18.5L8 16L13.5 13.5L16 8Z" fill="white"/>
+            </svg>
+          </div>
+          <div className="brand-info">
+            <h2 className="brand-name">DataLens AI</h2>
+            <p className="brand-tagline">Transform data into insights</p>
+          </div>
+        </div>
+        <div className="header-separator"></div>
+        <div className="hero-content">
+          <h1 className="app-title">
+            <span className="title-line">Conviértete en analista</span>
+            <span className="title-line">de datos en segundos</span>
+          </h1>
+          <p className="app-subtitle">
+            Sube tu hoja de cálculo y deja que la IA analice tus datos, sugiera visualizaciones
+            impresionantes y construya un dashboard hermoso automáticamente
+          </p>
+        </div>
       </header>
 
       <main className="app-main">

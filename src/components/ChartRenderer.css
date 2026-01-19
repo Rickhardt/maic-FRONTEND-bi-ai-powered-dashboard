@@ -1,40 +1,47 @@
 .chart-container {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(100, 108, 255, 0.2);
-  border-radius: 12px;
-  padding: 1.5rem;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .chart-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin: 0 0 1rem 0;
-  color: rgba(255, 255, 255, 0.87);
-  text-align: center;
+  color: hsl(var(--foreground));
+  margin: 0;
+  padding-bottom: 0.5rem;
 }
 
 .chart-empty {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 300px;
-  color: rgba(255, 255, 255, 0.5);
+  padding: 3rem 1rem;
+  min-height: 300px;
 }
 
-@media (prefers-color-scheme: light) {
-  .chart-container {
-    background: rgba(255, 255, 255, 0.8);
-    border-color: rgba(100, 108, 255, 0.3);
-  }
+.chart-empty p {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  margin: 0;
+}
 
-  .chart-title {
-    color: #213547;
-  }
+/* Recharts customization */
+.recharts-wrapper {
+  font-family: inherit;
+}
 
-  .chart-empty {
-    color: rgba(33, 53, 71, 0.5);
-  }
+.recharts-cartesian-axis-tick-value {
+  fill: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+}
+
+.recharts-legend-wrapper {
+  font-size: 0.875rem;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
 }
