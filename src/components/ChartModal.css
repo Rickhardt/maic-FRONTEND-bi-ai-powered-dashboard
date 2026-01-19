@@ -1,0 +1,173 @@
+.chart-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.chart-modal-content {
+  background: #1a1a1a;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 95vw;
+  max-height: 95vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease-out;
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.chart-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.87);
+  font-size: 2rem;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.chart-modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.chart-modal-header {
+  margin-bottom: 2rem;
+  padding-right: 3rem;
+}
+
+.chart-modal-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.chart-modal-insight {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.chart-modal-chart {
+  flex: 1;
+  min-height: 500px;
+  max-height: calc(95vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.chart-modal-chart .chart-container {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+}
+
+.chart-modal-chart .chart-container h3 {
+  display: none;
+}
+
+.chart-modal-chart .chart-container .recharts-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.chart-modal-chart .chart-container .recharts-responsive-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 500px;
+}
+
+@media (max-width: 768px) {
+  .chart-modal-overlay {
+    padding: 1rem;
+  }
+
+  .chart-modal-content {
+    padding: 1.5rem;
+    max-height: 90vh;
+  }
+
+  .chart-modal-title {
+    font-size: 1.5rem;
+  }
+
+  .chart-modal-insight {
+    font-size: 0.875rem;
+  }
+
+  .chart-modal-chart {
+    min-height: 400px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .chart-modal-content {
+    background: #ffffff;
+  }
+
+  .chart-modal-close {
+    background: rgba(33, 53, 71, 0.1);
+    color: #213547;
+  }
+
+  .chart-modal-close:hover {
+    background: rgba(33, 53, 71, 0.2);
+  }
+
+  .chart-modal-title {
+    color: #213547;
+  }
+
+  .chart-modal-insight {
+    color: rgba(33, 53, 71, 0.6);
+  }
+}

@@ -15,7 +15,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import type { ChartType, ChartDataPoint } from '../types';
+import type { ChartType, ChartDataPoint, ChartParameters } from '../types';
 import './ChartRenderer.css';
 
 interface ChartRendererProps {
@@ -23,11 +23,23 @@ interface ChartRendererProps {
   data: ChartDataPoint[];
   title: string;
   labels?: string[];
+  isExpanded?: boolean;
+  parameters?: ChartParameters;
 }
 
 const COLORS = ['#646cff', '#535bf2', '#747bff', '#8b92ff', '#a2a7ff'];
 
-export default function ChartRenderer({ chartType, data, title }: ChartRendererProps) {
+// Helper function to format axis labels
+const formatAxisLabel = (label: string | null | undefined): string => {
+  if (!label) return '';
+  // Convert snake_case or UPPERCASE to Title Case
+  return label
+    .split(/[_\s]+/)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+};
+
+export default function ChartRenderer({ chartType, data, title, isExpanded = false, parameters }: ChartRendererProps) {
   if (!data || data.length === 0) {
     return (
       <div className="chart-empty">
@@ -46,8 +58,13 @@ export default function ChartRenderer({ chartType, data, title }: ChartRendererP
               dataKey="name"
               tick={{ fill: 'rgba(255, 255, 255, 0.7)' }}
               style={{ fontSize: '0.875rem' }}
+              label={parameters?.x_axis ? { value: formatAxisLabel(parameters.x_axis), position: 'insideBottom', offset: -5, style: { fill: 'rgba(255, 255, 255, 0.7)', fontSize: '0.875rem' } } : undefined}
             />
-            <YAxis tick={{ fill: 'rgba(255, 255, 255, 0.7)' }} style={{ fontSize: '0.875rem' }} />
+            <YAxis 
+              tick={{ fill: 'rgba(255, 255, 255, 0.7)' }} 
+              style={{ fontSize: '0.875rem' }}
+              label={parameters?.y_axis ? { value: formatAxisLabel(parameters.y_axis), angle: -90, position: 'insideLeft', style: { fill: 'rgba(255, 255, 255, 0.7)', fontSize: '0.875rem', textAnchor: 'middle' } } : undefined}
+            />
             <Tooltip
               contentStyle={{
                 backgroundColor: 'rgba(26, 26, 26, 0.95)',
@@ -69,8 +86,13 @@ export default function ChartRenderer({ chartType, data, title }: ChartRendererP
               dataKey="name"
               tick={{ fill: 'rgba(255, 255, 255, 0.7)' }}
               style={{ fontSize: '0.875rem' }}
+              label={parameters?.x_axis ? { value: formatAxisLabel(parameters.x_axis), position: 'insideBottom', offset: -5, style: { fill: 'rgba(255, 255, 255, 0.7)', fontSize: '0.875rem' } } : undefined}
             />
-            <YAxis tick={{ fill: 'rgba(255, 255, 255, 0.7)' }} style={{ fontSize: '0.875rem' }} />
+            <YAxis 
+              tick={{ fill: 'rgba(255, 255, 255, 0.7)' }} 
+              style={{ fontSize: '0.875rem' }}
+              label={parameters?.y_axis ? { value: formatAxisLabel(parameters.y_axis), angle: -90, position: 'insideLeft', style: { fill: 'rgba(255, 255, 255, 0.7)', fontSize: '0.875rem', textAnchor: 'middle' } } : undefined}
+            />
             <Tooltip
               contentStyle={{
                 backgroundColor: 'rgba(26, 26, 26, 0.95)',
@@ -100,7 +122,7 @@ export default function ChartRenderer({ chartType, data, title }: ChartRendererP
               cy="50%"
               labelLine={false}
               label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-              outerRadius={80}
+              outerRadius={isExpanded ? 150 : 80}
               fill="#8884d8"
               dataKey="value"
             >
@@ -129,12 +151,14 @@ export default function ChartRenderer({ chartType, data, title }: ChartRendererP
               dataKey="x"
               tick={{ fill: 'rgba(255, 255, 255, 0.7)' }}
               style={{ fontSize: '0.875rem' }}
+              label={parameters?.x_axis ? { value: formatAxisLabel(parameters.x_axis), position: 'insideBottom', offset: -5, style: { fill: 'rgba(255, 255, 255, 0.7)', fontSize: '0.875rem' } } : undefined}
             />
             <YAxis
               type="number"
               dataKey="y"
               tick={{ fill: 'rgba(255, 255, 255, 0.7)' }}
               style={{ fontSize: '0.875rem' }}
+              label={parameters?.y_axis ? { value: formatAxisLabel(parameters.y_axis), angle: -90, position: 'insideLeft', style: { fill: 'rgba(255, 255, 255, 0.7)', fontSize: '0.875rem', textAnchor: 'middle' } } : undefined}
             />
             <Tooltip
               cursor={{ strokeDasharray: '3 3' }}
@@ -157,7 +181,7 @@ export default function ChartRenderer({ chartType, data, title }: ChartRendererP
   return (
     <div className="chart-container">
       <h3 className="chart-title">{title}</h3>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={isExpanded ? 600 : 300}>
         {renderChart()}
       </ResponsiveContainer>
     </div>

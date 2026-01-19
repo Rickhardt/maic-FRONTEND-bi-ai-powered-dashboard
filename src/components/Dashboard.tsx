@@ -5,9 +5,10 @@ import './Dashboard.css';
 interface DashboardProps {
   charts: DashboardChart[];
   onRemoveChart: (id: string) => void;
+  onExpandChart: (chart: DashboardChart) => void;
 }
 
-export default function Dashboard({ charts, onRemoveChart }: DashboardProps) {
+export default function Dashboard({ charts, onRemoveChart, onExpandChart }: DashboardProps) {
   if (charts.length === 0) {
     return (
       <div className="dashboard-empty">
@@ -53,7 +54,18 @@ export default function Dashboard({ charts, onRemoveChart }: DashboardProps) {
               data={chart.data}
               title={chart.suggestion.title}
               labels={chart.labels}
+              parameters={chart.suggestion.parameters}
             />
+            <button
+              className="expand-chart-button"
+              onClick={() => onExpandChart(chart)}
+              aria-label="Expandir gráfico"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+              </svg>
+              Expandir
+            </button>
           </div>
         ))}
       </div>

@@ -3,6 +3,7 @@ import FileUpload from './components/FileUpload';
 import LoadingState from './components/LoadingState';
 import AnalysisCard from './components/AnalysisCard';
 import Dashboard from './components/Dashboard';
+import ChartModal from './components/ChartModal';
 import { uploadFile, getChartData } from './services/api';
 import type { ChartSuggestion, DashboardChart, FileInfo } from './types';
 import './App.css';
@@ -15,6 +16,7 @@ function App() {
   const [dashboardCharts, setDashboardCharts] = useState<DashboardChart[]>([]);
   const [fileInfo, setFileInfo] = useState<FileInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [expandedChart, setExpandedChart] = useState<DashboardChart | null>(null);
 
   const handleFileSelect = async (file: File) => {
     setState('uploading');
@@ -62,12 +64,21 @@ function App() {
     setDashboardCharts((prev) => prev.filter((chart) => chart.id !== id));
   };
 
+  const handleExpandChart = (chart: DashboardChart) => {
+    setExpandedChart(chart);
+  };
+
+  const handleCloseModal = () => {
+    setExpandedChart(null);
+  };
+
   const handleReset = () => {
     setState('idle');
     setSuggestions([]);
     setDashboardCharts([]);
     setFileInfo(null);
     setError(null);
+    setExpandedChart(null);
   };
 
   return (
@@ -131,7 +142,7 @@ function App() {
                     key={index}
                     suggestion={suggestion}
                     onAddToDashboard={() => handleAddToDashboard(suggestion)}
-                    disabled={state === 'suggestions'}
+                    disabled={false}
                   />
                 ))}
               </div>
@@ -139,12 +150,18 @@ function App() {
 
             {dashboardCharts.length > 0 && (
               <section className="dashboard-section">
-                <Dashboard charts={dashboardCharts} onRemoveChart={handleRemoveChart} />
+                <Dashboard 
+                  charts={dashboardCharts} 
+                  onRemoveChart={handleRemoveChart}
+                  onExpandChart={handleExpandChart}
+                />
               </section>
             )}
           </>
         )}
       </main>
+
+      <ChartModal chart={expandedChart} onClose={handleCloseModal} />
 
       <footer className="app-footer">
         <p>
