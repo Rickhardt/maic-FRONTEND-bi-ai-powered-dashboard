@@ -19,8 +19,13 @@ function App() {
   const [expandedChart, setExpandedChart] = useState<DashboardChart | null>(null);
 
   const handleFileSelect = async (file: File) => {
-    setState('uploading');
+    // Limpiar todos los datos del archivo anterior
+    setSuggestions([]);
+    setDashboardCharts([]);
+    setFileInfo(null);
+    setExpandedChart(null);
     setError(null);
+    setState('uploading');
 
     try {
       const response = await uploadFile(file);
@@ -95,6 +100,20 @@ function App() {
             <h2 className="brand-name">DataLens AI</h2>
             <p className="brand-tagline">Transform data into insights</p>
           </div>
+          {state === 'suggestions' && (
+            <button 
+              onClick={handleReset}
+              className="new-file-button"
+              aria-label="Subir nuevo archivo"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+              Subir nuevo archivo
+            </button>
+          )}
         </div>
         <div className="header-separator"></div>
         <div className="hero-content">
@@ -112,7 +131,7 @@ function App() {
       <main className="app-main">
         {state === 'idle' && (
           <section className="upload-section">
-            <FileUpload onFileSelect={handleFileSelect} />
+            <FileUpload key={fileInfo ? 'reset' : 'initial'} onFileSelect={handleFileSelect} />
           </section>
         )}
 

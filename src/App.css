@@ -18,6 +18,8 @@
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
+  position: relative;
+  justify-content: space-between;
 }
 
 .brand-logo {
@@ -28,6 +30,39 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  flex: 1;
+}
+
+.new-file-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: rgba(100, 108, 255, 0.15);
+  border: 1px solid rgba(100, 108, 255, 0.3);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.new-file-button:hover {
+  background: rgba(100, 108, 255, 0.25);
+  border-color: rgba(100, 108, 255, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(100, 108, 255, 0.3);
+}
+
+.new-file-button:active {
+  transform: translateY(0);
+}
+
+.new-file-button svg {
+  flex-shrink: 0;
 }
 
 .brand-name {
@@ -217,6 +252,17 @@
   .suggestions-grid {
     grid-template-columns: 1fr;
   }
+
+  .brand-header {
+    flex-wrap: wrap;
+  }
+
+  .new-file-button {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 0.75rem;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -260,5 +306,16 @@
 
   .app-footer p {
     color: rgba(33, 53, 71, 0.5);
+  }
+
+  .new-file-button {
+    background: rgba(100, 108, 255, 0.1);
+    border-color: rgba(100, 108, 255, 0.3);
+    color: rgba(33, 53, 71, 0.9);
+  }
+
+  .new-file-button:hover {
+    background: rgba(100, 108, 255, 0.2);
+    border-color: rgba(100, 108, 255, 0.5);
   }
 }
