@@ -1,10 +1,10 @@
-# DataLens AI - Creador de Dashboards con IA
+# Creador de Dashboards con IA
 
 Frontend de una aplicación web que permite a cualquier usuario convertirse en un analista de datos. Sube una hoja de cálculo (.xlsx o .csv) y la aplicación usará Inteligencia Artificial para analizar los datos, sugerir visualizaciones impactantes y ayudarte a construir un dashboard simple y elegante en segundos.
 
-> **Nota**: Este es el proyecto del frontend. El backend debe ejecutarse en un proyecto separado.
+> **Nota**: Este es solo el proyecto del frontend. El backend debe ejecutarse en un proyecto separado.
 
-## 🚀 Características
+## Características
 
 - **Carga de archivos**: Soporta archivos .xlsx, .xls y .csv con drag-and-drop
 - **Análisis con IA**: La IA analiza automáticamente tus datos y sugiere visualizaciones relevantes
@@ -15,16 +15,15 @@ Frontend de una aplicación web que permite a cualquier usuario convertirse en u
 
 ## 📋 Requisitos
 
-- Node.js 18+ (recomendado Node.js 20+)
-- npm o yarn
-- Backend ejecutándose (ver sección de configuración)
+- Node.js 18+
+- Todas las librerías necesarias ya están consideradas en el archivo package.json
 
-## 🛠️ Instalación
+## Instalación
 
 ### 1. Clonar el repositorio
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/Rickhardt/maic-FRONTEND-bi-ai-powered-dashboard.git
 cd maic-FRONTEND-bi-ai-powered-dashboard
 ```
 
@@ -34,17 +33,7 @@ cd maic-FRONTEND-bi-ai-powered-dashboard
 npm install
 ```
 
-Esto instalará todas las dependencias necesarias, incluyendo:
-- React y React DOM
-- TypeScript
-- Vite
-- Tailwind CSS v4
-- Recharts (para gráficos)
-- Axios (cliente HTTP)
-- Componentes UI (Radix UI, shadcn/ui)
-- Y otras dependencias de desarrollo
-
-### 3. Configurar variables de entorno (Opcional)
+### 3. Configurar variables de entorno (Esto es opcional)
 
 Crea un archivo `.env` en la raíz del proyecto:
 
@@ -52,21 +41,13 @@ Crea un archivo `.env` en la raíz del proyecto:
 VITE_API_URL=http://localhost:8000
 ```
 
-Si no se especifica, el frontend usará `http://localhost:8000` por defecto.
+Si no se especifica, el frontend usará `http://localhost:8000` por defecto (Esto solo si el proyecto se corre en un servidor propio).
 
-Para diferentes entornos, puedes crear:
+Para diferentes entornos, se puede crear:
 - `.env.development` - Para desarrollo local
 - `.env.production` - Para producción
 
-### 4. Verificar configuración
-
-El proyecto ya viene configurado con:
-- ✅ Tailwind CSS v4 con PostCSS
-- ✅ Path aliases (`@/*` → `src/*`)
-- ✅ TypeScript configurado
-- ✅ Componentes UI base (Card, Button)
-
-## 🚀 Ejecución
+## ¿Cómo ejecutar?
 
 ### Modo Desarrollo
 
@@ -86,301 +67,53 @@ npm run build
 
 Esto generará los archivos optimizados en la carpeta `dist/`.
 
-### Preview del Build
 
-Para previsualizar el build de producción:
+## ¿Cómo usar la aplicación?
 
-```bash
-npm run preview
-```
+1. **Asegurarse de que el backend esté ejecutándose**
+2. **Inicia el frontend**: ejecutando `npm run dev`
+3. **Abrir la aplicación** navegando hasta `http://localhost:5173`
+4. **Subir un archivo**: Arrastra y suelta un archivo .xlsx, .xls o .csv, o haz clic en el campo para buscarlo desde el explorador de archivos
+5. **Revisar las sugerencias**: Explorar las visualizaciones sugeridas por la IA
+6. **Agregar al dashboard**: Haga clic en "Agregar al Dashboard" en las sugerencias que le interesen
+8. **Visualizar los gráficos**: Los gráficos aparecerán en el dashboard
+9. **Interacción con los gráficos**:
+   - Eliminar gráficos haciendo clic en el botón "×" en la esquina superior derecha
+   - Expandir gráficos haciendo clic en el botón "Expandir" para verlos en pantalla completa
 
-### ⚠️ Importante: Backend Requerido
 
-Este frontend requiere que el backend esté ejecutándose. Por defecto, se conecta a `http://localhost:8000`. Asegúrate de que:
-
-1. El backend esté ejecutándose en un proyecto separado
-2. El backend tenga CORS configurado para permitir solicitudes desde `http://localhost:5173`
-3. El backend implemente los siguientes endpoints:
-   - `POST /api/upload` - Para subir y procesar archivos
-   - `POST /api/chart-data` - Para obtener datos agregados de gráficos
-
-## 📖 Uso
-
-1. **Asegúrate de que el backend esté ejecutándose**
-2. **Inicia el frontend**: Ejecuta `npm run dev`
-3. **Abre la aplicación** en tu navegador (`http://localhost:5173`)
-4. **Sube un archivo**: Arrastra y suelta un archivo .xlsx o .csv, o haz clic para seleccionarlo
-5. **Espera el análisis**: La IA analizará tus datos automáticamente
-6. **Revisa las sugerencias**: Explora las visualizaciones sugeridas por la IA
-7. **Agrega al dashboard**: Haz clic en "Agregar al Dashboard" en las sugerencias que te interesen
-8. **Visualiza tus gráficos**: Los gráficos aparecerán en el dashboard
-9. **Interactúa con los gráficos**:
-   - Elimina gráficos haciendo clic en el botón "×" en la esquina superior derecha
-   - Expande gráficos haciendo clic en el botón "Expandir" para verlos en pantalla completa
-
-## 🏗️ Estructura del Proyecto
-
-```
-maic-FRONTEND-bi-ai-powered-dashboard/
-├── src/
-│   ├── components/
-│   │   ├── ui/                    # Componentes UI reutilizables (shadcn/ui)
-│   │   │   ├── card.tsx           # Componente Card
-│   │   │   ├── button.tsx         # Componente Button
-│   │   │   └── ...                # Otros componentes UI
-│   │   ├── FileUpload.tsx         # Componente de carga de archivos
-│   │   ├── FileUpload.css        # Estilos del componente FileUpload
-│   │   ├── LoadingState.tsx      # Estado de carga
-│   │   ├── LoadingState.css      # Estilos del componente LoadingState
-│   │   ├── AnalysisCard.tsx       # Tarjeta de sugerencia
-│   │   ├── AnalysisCard.css      # Estilos del componente AnalysisCard
-│   │   ├── Dashboard.tsx         # Dashboard principal
-│   │   ├── Dashboard.css         # Estilos del componente Dashboard
-│   │   ├── ChartRenderer.tsx     # Renderizado de gráficos
-│   │   ├── ChartRenderer.css     # Estilos del componente ChartRenderer
-│   │   ├── ChartModal.tsx        # Modal para gráficos expandidos
-│   │   └── ChartModal.css        # Estilos del componente ChartModal
-│   ├── lib/
-│   │   └── utils.ts              # Utilidades (función cn para Tailwind)
-│   ├── services/
-│   │   └── api.ts                # Cliente API (Axios)
-│   ├── types/
-│   │   └── index.ts              # Tipos TypeScript
-│   ├── App.tsx                   # Componente principal
-│   ├── App.css                   # Estilos globales de la aplicación
-│   ├── index.css                 # Estilos base y variables CSS
-│   └── main.tsx                  # Punto de entrada
-├── public/                        # Archivos estáticos
-├── .env                           # Variables de entorno (crear manualmente)
-├── .env.development               # Variables de entorno para desarrollo
-├── .env.production                # Variables de entorno para producción
-├── tailwind.config.js             # Configuración de Tailwind CSS
-├── postcss.config.js              # Configuración de PostCSS
-├── vite.config.ts                 # Configuración de Vite
-├── tsconfig.json                  # Configuración de TypeScript
-├── tsconfig.app.json              # Configuración de TypeScript para la app
-├── package.json                   # Dependencias Node.js
-└── README.md                      # Este archivo
-```
-
-## 🔧 Configuración Avanzada
-
-### Variables de Entorno
-
-#### Desarrollo Local
-
-Crea un archivo `.env.development`:
-
-```env
-VITE_API_URL=http://localhost:8000
-```
-
-#### Producción
-
-Crea un archivo `.env.production`:
-
-```env
-VITE_API_URL=https://tu-backend-api.com
-```
-
-O configura la variable en tu plataforma de hosting (Vercel, Netlify, etc.)
-
-### Tailwind CSS
-
-El proyecto usa Tailwind CSS v4 con configuración personalizada. Las variables CSS están definidas en `src/index.css` y se pueden personalizar según tus necesidades.
-
-### Path Aliases
-
-El proyecto está configurado con path aliases para facilitar las importaciones:
-
-```typescript
-// En lugar de:
-import { cn } from '../../lib/utils'
-
-// Puedes usar:
-import { cn } from '@/lib/utils'
-```
-
-### Agregar Componentes UI Adicionales
-
-Si necesitas agregar más componentes de shadcn/ui:
-
-1. Copia el archivo del componente a `src/components/ui/`
-2. Instala las dependencias de Radix UI necesarias:
-   ```bash
-   npm install @radix-ui/react-[componente]
-   ```
-3. Asegúrate de que el componente importe correctamente desde `@/lib/utils`
-
-## 📚 Tecnologías Utilizadas
+## Frameworks o herramientas Utilizadas
 
 ### Core
-- **React 19**: Biblioteca de UI moderna
-- **TypeScript**: Tipado estático para mayor seguridad
-- **Vite 7**: Build tool y dev server ultra rápido
+- **React 19**: Porque es la versión actual estable de React aunque bien podría utilizarse la versión 18. Pudo haber sido Angular también, tengo experiencia en ambas pero usualmente prefiero usar React.
+- **TypeScript**: Por el tipado que agrega a Javascript que permite verificar problemas antes de correr la aplicación en el navegador.
 
 ### Estilos
-- **Tailwind CSS v4**: Framework CSS utility-first
-- **PostCSS**: Procesador CSS
-- **CSS Variables**: Sistema de temas con variables CSS
+- **Tailwind CSS v4**: Mi experiencia previa me ha demostrado que es muy útil para crear prototipos de forma rápida para evitar escribir mucho CSS. Mi lógica fue, estilizar lo menos posible ahora, lograr el funcionamiento mínimo esperado y estilizar al obtener la aprobación del usuario. Es decir, crear un MVP
 
-### UI Components
-- **shadcn/ui**: Sistema de componentes basado en Radix UI
-- **Radix UI**: Componentes primitivos accesibles
-- **Lucide React**: Iconos modernos
+### Componentes de UI
+- **shadcn/ui**: Fueron elementos generados por v0 de Vercel
+- **Radix UI**: Es la misma razón de usar Tailwind, aunque podría haberse usado bootstrap, siento que se ve más moderno estos elementos.
+- **Lucide React**: Iconos modernos, también recomendados por v0.
 
 ### Gráficos y Visualización
-- **Recharts**: Librería de gráficos para React
+- **Recharts**: Yo pretendía usar ChartJS (Con la que ya tengo experiencia) pero vi que era un poco más difícil de utilizar en React (Incluso en Angular) así que en Cursor pregunté por una librería que tuviera soporte lo más parecido a nativo en React y me sugirió esta. Investigando veo que es fácil de implementar (Y rápida para este prototipo)
 
 ### HTTP y Utilidades
-- **Axios**: Cliente HTTP
-- **class-variance-authority**: Utilidad para variantes de componentes
-- **clsx**: Utilidad para combinar clases CSS
-- **tailwind-merge**: Merge de clases Tailwind
+- **Axios**: ya tengo experiencia con esta librería así que la utilicé por que puedo utilizarla de forma rápida. Además, la siento más cómoda de utilizar.
 
-## 🔌 API del Backend
 
-El frontend espera que el backend implemente los siguientes endpoints:
 
-### POST /api/upload
+### Notas importantes
 
-Sube y procesa un archivo .xlsx o .csv.
+## Acerca del backend
 
-**Request:**
-- Content-Type: `multipart/form-data`
-- Body: archivo con nombre `file`
+Como ya se mencionó antes, este proyecto es solo el frontend, requiere que el backend esté ejecutándose. Por defecto, se conecta a `http://localhost:8000`. Hay que asegurarse de que:
 
-**Response:**
-```typescript
-{
-  success: boolean;
-  message: string;
-  suggestions: ChartSuggestion[];
-  file_info: {
-    file_id: string;
-    filename: string;
-    rows: number;
-    columns: number;
-    column_names: string[];
-  };
-}
-```
+1. El backend esté ejecutándose en un proyecto separado
+2. El backend tenga CORS configurado para permitir solicitudes desde la URL desde donde se ejecuta este proyecto (Por defecto utiliza esta `http://localhost:5173`)
 
-### POST /api/chart-data
 
-Obtiene datos agregados para un gráfico específico.
+## La aplicación se puede acceder desde internet
 
-**Request:**
-```typescript
-{
-  file_id: string;
-  chart_type: 'bar' | 'line' | 'pie' | 'scatter';
-  parameters: {
-    x_axis?: string;
-    y_axis?: string;
-    category?: string;
-    value?: string;
-    group_by?: string;
-    aggregate?: string;
-  };
-}
-```
-
-**Response:**
-```typescript
-{
-  success: boolean;
-  chart_type: string;
-  data: Array<{
-    name?: string;
-    value?: number;
-    x?: number;
-    y?: number;
-    [key: string]: any;
-  }>;
-  labels?: string[];
-}
-```
-
-## 🐛 Solución de Problemas
-
-### Error de CORS
-
-Si encuentras errores de CORS, asegúrate de que:
-1. El backend tenga CORS configurado correctamente
-2. La URL del backend en `.env` sea correcta
-3. El backend permita solicitudes desde `http://localhost:5173`
-
-### Error de Tailwind CSS
-
-Si Tailwind no funciona correctamente:
-1. Verifica que `@tailwindcss/postcss` esté instalado
-2. Revisa que `postcss.config.js` use `'@tailwindcss/postcss'`
-3. Asegúrate de que `src/index.css` tenga las directivas `@tailwind`
-
-### Error de Path Aliases
-
-Si las importaciones con `@/` no funcionan:
-1. Verifica `tsconfig.app.json` tiene la configuración de paths
-2. Verifica `vite.config.ts` tiene el alias configurado
-3. Reinicia el servidor de desarrollo
-
-## 🚀 Despliegue
-
-### Vercel
-
-1. Conecta tu repositorio a Vercel
-2. Configura las variables de entorno en el dashboard de Vercel
-3. Vercel detectará automáticamente Vite y configurará el build
-
-### Netlify
-
-1. Conecta tu repositorio a Netlify
-2. Configura el build command: `npm run build`
-3. Configura el publish directory: `dist`
-4. Agrega las variables de entorno en la configuración del sitio
-
-### Otras Plataformas
-
-Cualquier plataforma que soporte Node.js y pueda ejecutar `npm run build` funcionará. Asegúrate de configurar la variable de entorno `VITE_API_URL` con la URL de tu backend en producción.
-
-## 🤝 Contribuir
-
-Las contribuciones son bienvenidas. Por favor:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-### Guía de Estilo
-
-- Usa TypeScript para todo el código
-- Sigue las convenciones de React (componentes funcionales, hooks)
-- Usa Tailwind CSS para estilos (evita CSS inline cuando sea posible)
-- Mantén los componentes pequeños y reutilizables
-- Documenta componentes complejos
-
-## 📝 Licencia
-
-Este proyecto está bajo la Licencia MIT.
-
-## 🙏 Agradecimientos
-
-- **Recharts** por las visualizaciones hermosas
-- **React y Vite** por la experiencia de desarrollo
-- **shadcn/ui** por el sistema de componentes
-- **Radix UI** por los componentes primitivos accesibles
-- **Tailwind CSS** por el framework de estilos
-
-## 📞 Soporte
-
-Si tienes problemas o preguntas:
-1. Revisa la sección de [Solución de Problemas](#-solución-de-problemas)
-2. Abre un issue en el repositorio
-3. Consulta la documentación de las tecnologías utilizadas
-
----
-
-**Desarrollado con ❤️ usando React, TypeScript y Tailwind CSS**
+Esta aplicación está desplegada en https://bi-dashboard-vert.vercel.app/ (Este sería la página web), ya tiene todo configurado para poder utilizarse. Se está usando Vercel para el hosting del frontend y Render para el backend. Ya que se está usando los planes gratuitos, la API se pone en hibernación luego de cierto tiempo sin actividd y puede tardarse hasta 50 segundos en reactivarse y esto podría afectar la primera petición que se haga, así que espero que tomen en cuenta esto al momento de evaluar la velocidad con la que retorna la información de las sugerencias de gráficos.
